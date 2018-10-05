@@ -105,13 +105,13 @@ func retryReq(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]byte, int, 
 	}
 	if code == http.StatusBadRequest {
 		if bytes.Contains(resp_body, exceeded_msg_bytes) {
-			log.Printf("authreq.retryReq THROUGHPUT WARNING RETRY\n")
+			log.Printf("authreq.retryReq ProvisionedThroughputExceededException\n")
 			shouldRetry = true
 		} else if bytes.Contains(resp_body, unrecognized_client_msg_bytes) {
-			log.Printf("authreq.retryReq CLIENT WARNING RETRY\n")
+			log.Printf("authreq.retryReq UnrecognizedClientException\n")
 			shouldRetry = true
 		} else if bytes.Contains(resp_body, throttling_msg_bytes) {
-			log.Printf("authreq.retryReq THROUGHPUT WARNING RETRY\n")
+			log.Printf("authreq.retryReq ThrottlingException\n")
 			shouldRetry = true
 		} else {
 			log.Printf("authreq.retryReq un-retryable err: %s\n%s (reqid:%s)\n",
@@ -151,7 +151,7 @@ func retryReq(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]byte, int, 
 			}
 			if code == http.StatusBadRequest {
 				if bytes.Contains(resp_body, exceeded_msg_bytes) {
-					log.Printf("authreq.retryReq THROUGHPUT WARNING RETRY\n")
+					log.Printf("authreq.retryReq ProvisionedThroughputExceededException\n")
 					shouldRetry = true
 				}
 			}

@@ -147,6 +147,21 @@ func (get_item *GetItem) EndpointReqWithConf(c *conf.AWS_Conf) ([]byte, int, err
 	return authreq.RetryReqJSON_V4WithConf(reqJSON, GETITEM_ENDPOINT, c)
 }
 
+func (get_item *GetItem) EndpointReqWithConfRequesetID(c *conf.AWS_Conf) ([]byte, string, int, error) {
+	if get_item == nil {
+		return nil, "", 0, errors.New("get_item.(GetItem)EndpointReqWithConf: receiver is nil")
+	}
+	if !conf.IsValid(c) {
+		return nil, "", 0, errors.New("get_item.EndpointReqWithConf: c is not valid")
+	}
+	// returns resp_body,code,err
+	reqJSON, json_err := json.Marshal(get_item)
+	if json_err != nil {
+		return nil, "", 0, json_err
+	}
+	return authreq.RetryReqJSON_V4WithConfRequestID(reqJSON, GETITEM_ENDPOINT, c)
+}
+
 func (get *Get) EndpointReqWithConf(c *conf.AWS_Conf) ([]byte, int, error) {
 	if get == nil {
 		return nil, 0, errors.New("get_item.(Get)EndpointReqWithConf: receiver is nil")

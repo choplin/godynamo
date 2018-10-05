@@ -86,6 +86,13 @@ func RetryReqJSON_V4WithConf(reqJSON []byte, amzTarget string, c *conf.AWS_Conf)
 	return retryReq(reqJSON, amzTarget, c)
 }
 
+func RetryReqJSON_V4WithConfRequestID(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]byte, string, int, error) {
+	if !conf.IsValid(c) {
+		return nil, "", 0, errors.New("authreq.RetryReqJSON_V4WithConf: conf not valid")
+	}
+	return retryReqRequestID(reqJSON, amzTarget, c)
+}
+
 // Implement exponential backoff for the req above in the case of 5xx errors
 // from aws. Algorithm is lifted from AWS docs.
 // returns []byte respBody, int httpcode, error
@@ -165,5 +172,84 @@ func retryReq(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]byte, int, 
 		e := fmt.Sprintf("authreq.retryReq: failed retries on %s:%s",
 			amzTarget, string(reqJSON))
 		return nil, 0, errors.New(e)
+	}
+}
+
+func retryReqRequestID(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]byte, string, int, error) {
+	// conf.IsValid has already been established by caller
+	resp_body, amz_requestid, code, resp_err := auth_v4.ReqWithConf(reqJSON, amzTarget, c)
+	shouldRetry := false
+	if resp_err != nil {
+		e := fmt.Sprintf("authreq.retryReq:0 "+
+			" try AuthReq Fail:%s (reqid:%s)", resp_err.Error(), amz_requestid)
+		log.Printf("authreq.retryReq: call err %s\n", e)
+		shouldRetry = true
+	}
+	// see:
+	// http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/ErrorHandling.html
+	if code >= http.StatusInternalServerError {
+		shouldRetry = true // all 5xx codes are deemed retryable by amazon
+	}
+	if code == http.StatusBadRequest {
+		if bytes.Contains(resp_body, exceeded_msg_bytes) {
+			log.Printf("authreq.retryReq ProvisionedThroughputExceededException\n")
+			shouldRetry = true
+		} else if bytes.Contains(resp_body, unrecognized_client_msg_bytes) {
+			log.Printf("authreq.retryReq UnrecognizedClientException\n")
+			shouldRetry = true
+		} else if bytes.Contains(resp_body, throttling_msg_bytes) {
+			log.Printf("authreq.retryReq ThrottlingException\n")
+			shouldRetry = true
+		} else {
+			log.Printf("authreq.retryReq un-retryable err: %s\n%s (reqid:%s)\n",
+				string(resp_body), string(reqJSON), amz_requestid)
+			shouldRetry = false
+		}
+	}
+	if !shouldRetry {
+		// not retryable
+		return resp_body, amz_requestid, code, resp_err
+	} else {
+		// retry the request RETRIES time in the case of a 5xx
+		// response, with an exponentially decayed sleep interval
+
+		// seed our rand number generator g
+		g := rand.New(rand.NewSource(time.Now().UnixNano()))
+		for i := 1; i < aws_const.RETRIES; i++ {
+			// get random delay from range
+			// [0..4**i*100 ms)
+			log.Printf("authreq.retryReq: BEGIN SLEEP %v (code:%v) (REQ:%s) (reqid:%s)",
+				time.Now(), code, string(reqJSON), amz_requestid)
+			r := time.Millisecond *
+				time.Duration(g.Int63n(int64(
+					math.Pow(4, float64(i)))*
+					100))
+			time.Sleep(r)
+			log.Printf("authreq.retryReq END SLEEP %v\n", time.Now())
+			shouldRetry = false
+			resp_body, amz_requestid, code, resp_err := auth_v4.ReqWithConf(reqJSON, amzTarget, c)
+			if resp_err != nil {
+				_ = fmt.Sprintf("authreq.retryReq:1 "+
+					" try AuthReq Fail:%s (reqid:%s)", resp_err.Error(), amz_requestid)
+				shouldRetry = true
+			}
+			if code >= http.StatusInternalServerError {
+				shouldRetry = true
+			}
+			if code == http.StatusBadRequest {
+				if bytes.Contains(resp_body, exceeded_msg_bytes) {
+					log.Printf("authreq.retryReq ProvisionedThroughputExceededException\n")
+					shouldRetry = true
+				}
+			}
+			if !shouldRetry {
+				// worked! no need to retry
+				log.Printf("authreq.retryReq RETRY LOOP SUCCESS")
+				return resp_body, amz_requestid, code, resp_err
+			}
+		}
+		e := fmt.Sprintf("authreq.retryReq: failed retries on %s:%s",
+			amzTarget, string(reqJSON))
+		return nil, amz_requestid, 0, errors.New(e)
 	}
 }

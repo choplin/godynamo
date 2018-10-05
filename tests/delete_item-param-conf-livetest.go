@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	delete_item "github.com/smugmug/godynamo/endpoints/delete_item"
 	"github.com/smugmug/godynamo/types/attributevalue"
-	"net/http"
-	"os"
 )
 
 func main() {

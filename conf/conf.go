@@ -9,8 +9,9 @@ package conf
 
 import (
 	"errors"
-	roles "github.com/smugmug/goawsroles/roles"
 	"sync"
+
+	roles "github.com/smugmug/goawsroles/roles"
 )
 
 const (

@@ -3,6 +3,8 @@ package godynamo
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
@@ -20,7 +22,6 @@ import (
 	update_item "github.com/smugmug/godynamo/endpoints/update_item"
 	update_table "github.com/smugmug/godynamo/endpoints/update_table"
 	keepalive "github.com/smugmug/godynamo/keepalive"
-	"log"
 )
 
 // This program serves only to include all of the libraries in GoDynamo so that you can

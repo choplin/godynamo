@@ -9,7 +9,7 @@ import (
 
 func TestNil(t *testing.T) {
 	g := NewPutItem()
-	_,_,err := g.EndpointReqWithConf(nil)
+	_, _, err := g.EndpointReqWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}
@@ -31,7 +31,7 @@ func TestRequestMarshal(t *testing.T) {
 		}
 		if i == 0 {
 			if len(s[i]) != len(string(json)) {
-				e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json))
+				e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json))
 				t.Errorf(e)
 			}
 		}
@@ -69,7 +69,7 @@ func TestResponseMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(s[i]) != len(string(json)) {
-			e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json))
+			e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json))
 			t.Errorf(e)
 		}
 	}

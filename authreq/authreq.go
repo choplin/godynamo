@@ -7,15 +7,16 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/smugmug/godynamo/auth_v4"
-	"github.com/smugmug/godynamo/aws_const"
-	"github.com/smugmug/godynamo/conf"
-	ep "github.com/smugmug/godynamo/endpoint"
 	"log"
 	"math"
 	"math/rand"
 	"net/http"
 	"time"
+
+	"github.com/smugmug/godynamo/auth_v4"
+	"github.com/smugmug/godynamo/aws_const"
+	"github.com/smugmug/godynamo/conf"
+	ep "github.com/smugmug/godynamo/endpoint"
 )
 
 const (

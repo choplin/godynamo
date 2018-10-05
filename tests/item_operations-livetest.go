@@ -4,6 +4,10 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
@@ -13,9 +17,6 @@ import (
 	update_item "github.com/smugmug/godynamo/endpoints/update_item"
 	keepalive "github.com/smugmug/godynamo/keepalive"
 	"github.com/smugmug/godynamo/types/attributevalue"
-	"log"
-	"net/http"
-	"os"
 )
 
 // this test program runs a bunch of item-oriented operations.

@@ -3,13 +3,14 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	batch_get_item "github.com/smugmug/godynamo/endpoints/batch_get_item"
 	"github.com/smugmug/godynamo/types/attributevalue"
 	"github.com/smugmug/godynamo/types/item"
-	"net/http"
-	"os"
 )
 
 // this tests "RetryBatchGet", which does NOT do intelligent splitting and re-assembling

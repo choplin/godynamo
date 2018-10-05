@@ -4,6 +4,7 @@ package item
 import (
 	"errors"
 	"fmt"
+
 	"github.com/smugmug/godynamo/types/attributevalue"
 )
 

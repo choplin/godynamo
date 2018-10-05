@@ -10,6 +10,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http"
+	"time"
+
 	"github.com/smugmug/godynamo/authreq"
 	"github.com/smugmug/godynamo/aws_const"
 	"github.com/smugmug/godynamo/conf"
@@ -19,8 +22,6 @@ import (
 	"github.com/smugmug/godynamo/types/keydefinition"
 	"github.com/smugmug/godynamo/types/localsecondaryindex"
 	"github.com/smugmug/godynamo/types/provisionedthroughput"
-	"net/http"
-	"time"
 )
 
 const (

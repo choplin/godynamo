@@ -30,8 +30,8 @@ func TestAttributeValueMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		o := string(json)
-		if (len(v) != len(o)) {
-			e := fmt.Sprintf("%s\n%s\nshould be equal through round-trip",v,o)
+		if len(v) != len(o) {
+			e := fmt.Sprintf("%s\n%s\nshould be equal through round-trip", v, o)
 			t.Errorf(e)
 		}
 	}
@@ -60,8 +60,8 @@ func TestAttributeValueMarshalDeDuplicate(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		o := string(json)
-		if (len(c[i]) != len(o)) {
-			e := fmt.Sprintf("%s\n%s\nshould be equal through round-trip",c[i],o)
+		if len(c[i]) != len(o) {
+			e := fmt.Sprintf("%s\n%s\nshould be equal through round-trip", c[i], o)
 			t.Errorf(e)
 		}
 	}
@@ -133,7 +133,7 @@ func TestAttributeValueInserts(t *testing.T) {
 	}
 	c := `{"SS":["hi","bye"]}`
 	if len(c) != len(string(json)) {
-		e := fmt.Sprintf("%s\n%s\nshould be same",c,string(json))
+		e := fmt.Sprintf("%s\n%s\nshould be same", c, string(json))
 		t.Errorf(e)
 	}
 
@@ -146,7 +146,7 @@ func TestAttributeValueInserts(t *testing.T) {
 		t.Errorf(cp_err.Error())
 	}
 	av1 = nil
-	if _,ok := av2[k]; !ok {
+	if _, ok := av2[k]; !ok {
 		t.Errorf("key is not set in copy")
 	}
 }
@@ -167,7 +167,7 @@ func TestAttributeValueInserts2(t *testing.T) {
 	}
 	c := `{"L":[{"SS":["hi","bye"]}]}`
 	if len(c) != len(string(json)) {
-		e := fmt.Sprintf("%s\n%s\nshould be same",c,string(json))
+		e := fmt.Sprintf("%s\n%s\nshould be same", c, string(json))
 		t.Errorf(e)
 	}
 
@@ -247,7 +247,7 @@ func TestCoerceAttributeValueBasicJSON(t *testing.T) {
 			t.Errorf("cannot coerce")
 		}
 		if len(c[i]) != len(string(b)) {
-			e := fmt.Sprintf("%s\n%s\nshould be same",c[i],string(b))
+			e := fmt.Sprintf("%s\n%s\nshould be same", c[i], string(b))
 			t.Errorf(e)
 		}
 	}
@@ -271,7 +271,7 @@ func TestCoerceAttributeValueMapBasicJSON(t *testing.T) {
 			t.Errorf("cannot coerce")
 		}
 		if len(c[i]) != len(string(b)) {
-			e := fmt.Sprintf("%s\n%s\nshould be same",c[i],string(b))
+			e := fmt.Sprintf("%s\n%s\nshould be same", c[i], string(b))
 			t.Errorf(e)
 		}
 	}

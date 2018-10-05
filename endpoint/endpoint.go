@@ -7,6 +7,8 @@
 package endpoint
 
 import (
+	"net/http"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/types/attributedefinition"
 	"github.com/smugmug/godynamo/types/attributesresponse"
@@ -23,7 +25,6 @@ import (
 	"github.com/smugmug/godynamo/types/nullable"
 	"github.com/smugmug/godynamo/types/provisionedthroughput"
 	"github.com/smugmug/godynamo/types/returnvalues"
-	"net/http"
 )
 
 // re-exported consts for backwards compatibility

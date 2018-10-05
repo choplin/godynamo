@@ -7,7 +7,7 @@ import (
 
 func TestNil(t *testing.T) {
 	d := NewDescribeTable()
-	_,_,err := d.EndpointReqWithConf(nil)
+	_, _, err := d.EndpointReqWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}

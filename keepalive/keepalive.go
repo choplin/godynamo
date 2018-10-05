@@ -1,9 +1,10 @@
 package keepalive
 
 import (
-	auth_v4 "github.com/smugmug/godynamo/auth_v4" // to get the Client
 	"log"
 	"time"
+
+	auth_v4 "github.com/smugmug/godynamo/auth_v4" // to get the Client
 )
 
 // dial the keep alive domains to establish a conn

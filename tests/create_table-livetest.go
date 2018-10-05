@@ -3,6 +3,10 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
@@ -15,9 +19,6 @@ import (
 	"github.com/smugmug/godynamo/types/aws_strings"
 	"github.com/smugmug/godynamo/types/keydefinition"
 	"github.com/smugmug/godynamo/types/localsecondaryindex"
-	"log"
-	"net/http"
-	"os"
 )
 
 func main() {

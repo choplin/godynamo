@@ -3,14 +3,15 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
 	get "github.com/smugmug/godynamo/endpoints/get_item"
 	keepalive "github.com/smugmug/godynamo/keepalive"
 	"github.com/smugmug/godynamo/types/attributevalue"
-	"log"
-	"net/http"
 )
 
 func main() {

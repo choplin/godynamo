@@ -8,7 +8,7 @@ import (
 
 func TestNil(t *testing.T) {
 	q := NewQuery()
-	_,_,err := q.EndpointReqWithConf(nil)
+	_, _, err := q.EndpointReqWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}

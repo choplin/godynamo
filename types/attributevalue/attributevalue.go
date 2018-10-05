@@ -7,8 +7,9 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/smugmug/godynamo/types/cast"
 	"strconv"
+
+	"github.com/smugmug/godynamo/types/cast"
 )
 
 // SetList represents the SS,BS and NS types which are ostensibly sets but encoded as

@@ -2,13 +2,14 @@ package main
 
 import (
 	"fmt"
+	"net/http"
+	"os"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	batch_write_item "github.com/smugmug/godynamo/endpoints/batch_write_item"
 	"github.com/smugmug/godynamo/types/attributevalue"
 	"github.com/smugmug/godynamo/types/item"
-	"net/http"
-	"os"
 )
 
 // these tests are just like batch_write_item-livestest except they use a parameterized conf

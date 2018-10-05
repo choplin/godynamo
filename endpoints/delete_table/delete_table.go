@@ -9,6 +9,7 @@ package delete_table
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/smugmug/godynamo/authreq"
 	"github.com/smugmug/godynamo/aws_const"
 	"github.com/smugmug/godynamo/conf"
@@ -46,7 +47,7 @@ func NewResponse() *Response {
 // These implementations of EndpointReq use a parameterized conf.
 
 func (delete_table *DeleteTable) EndpointReqWithConf(c *conf.AWS_Conf) ([]byte, int, error) {
-    	if delete_table == nil {
+	if delete_table == nil {
 		return nil, 0, errors.New("delete_table.(DeleteTable)EndpointReqWithConf: receiver is nil")
 	}
 	if !conf.IsValid(c) {

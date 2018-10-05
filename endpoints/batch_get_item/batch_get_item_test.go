@@ -4,14 +4,15 @@ package batch_get_item
 import (
 	"encoding/json"
 	"fmt"
+	"testing"
+
 	"github.com/smugmug/godynamo/types/attributevalue"
 	"github.com/smugmug/godynamo/types/item"
-	"testing"
 )
 
 func TestNil(t *testing.T) {
 	b := NewBatchGetItem()
-	_,_,err := b.DoBatchGetWithConf(nil)
+	_, _, err := b.DoBatchGetWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}

@@ -3,14 +3,15 @@ package batch_write_item
 import (
 	"encoding/json"
 	"fmt"
+	"testing"
+
 	"github.com/smugmug/godynamo/types/attributevalue"
 	"github.com/smugmug/godynamo/types/item"
-	"testing"
 )
 
 func TestNil(t *testing.T) {
 	b := NewBatchWriteItem()
-	_,_,err := b.DoBatchWriteWithConf(nil)
+	_, _, err := b.DoBatchWriteWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}

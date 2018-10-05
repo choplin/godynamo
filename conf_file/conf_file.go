@@ -5,8 +5,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/smugmug/godynamo/aws_const"
-	"github.com/smugmug/godynamo/conf"
 	"io/ioutil"
 	"log"
 	"net"
@@ -14,6 +12,9 @@ import (
 	"os"
 	"path/filepath"
 	"strconv"
+
+	"github.com/smugmug/godynamo/aws_const"
+	"github.com/smugmug/godynamo/conf"
 )
 
 // ReadConfFile will attempt to read in the conf file path passed as a parameter

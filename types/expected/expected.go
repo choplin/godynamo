@@ -6,6 +6,7 @@ package expected
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/smugmug/godynamo/types/attributevalue"
 )
 
@@ -56,7 +57,7 @@ func (c *Constraints) UnmarshalJSON(data []byte) error {
 	if ci.ComparisonOperator != "" {
 		c.ComparisonOperator = ci.ComparisonOperator
 	}
-	
+
 	if ci.Value != nil {
 		c.Value = attributevalue.NewAttributeValue()
 		cp_err := ci.Value.Copy(c.Value)

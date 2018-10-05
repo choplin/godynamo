@@ -15,10 +15,11 @@ package conf_iam
 import (
 	"errors"
 	"fmt"
-	conf "github.com/smugmug/godynamo/conf"
-	roles_files "github.com/smugmug/goawsroles/roles_files"
 	"log"
 	"time"
+
+	roles_files "github.com/smugmug/goawsroles/roles_files"
+	conf "github.com/smugmug/godynamo/conf"
 )
 
 // AssignCredentialsToConf will safely copy the credentials data from rf to the conf c.

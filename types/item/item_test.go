@@ -32,7 +32,7 @@ func TestItemMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(s[i]) != len(string(json)) {
-			e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json))
+			e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json))
 			t.Errorf(e)
 		}
 		l := len(a)
@@ -40,15 +40,15 @@ func TestItemMarshal(t *testing.T) {
 		a.Copy(ac)
 		lc := len(ac)
 		if l != lc {
-			e := fmt.Sprintf("lengths differ: %d %d",l,lc)
+			e := fmt.Sprintf("lengths differ: %d %d", l, lc)
 			t.Errorf(e)
 		}
-		fmt.Printf("%d %d\n",l,lc)
-		delete(a,"ItemName")
+		fmt.Printf("%d %d\n", l, lc)
+		delete(a, "ItemName")
 
 		lc = len(ac)
 		if l != lc {
-			e := fmt.Sprintf("lengths differ: %d %d",l,lc)
+			e := fmt.Sprintf("lengths differ: %d %d", l, lc)
 			t.Errorf(e)
 		}
 

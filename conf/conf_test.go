@@ -1,9 +1,10 @@
 package conf
 
 import (
+	"testing"
+
 	roles_master "github.com/smugmug/goawsroles/roles_master"
 	roles_simple "github.com/smugmug/goawsroles/roles_simple"
-	"testing"
 )
 
 func TestRolesSimple(t *testing.T) {

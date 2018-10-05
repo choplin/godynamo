@@ -8,7 +8,7 @@ import (
 
 func TestNil(t *testing.T) {
 	d := NewDeleteItem()
-	_,_,err := d.EndpointReqWithConf(nil)
+	_, _, err := d.EndpointReqWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}
@@ -45,7 +45,7 @@ func TestResponseUnmarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(s[i]) != len(string(json)) {
-			e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json))
+			e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json))
 			t.Errorf(e)
 		}
 		_ = fmt.Sprintf("IN:%v, OUT:%v\n", v, string(json))

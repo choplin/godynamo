@@ -3,6 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"log"
+	"net/http"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
@@ -10,8 +13,6 @@ import (
 	keepalive "github.com/smugmug/godynamo/keepalive"
 	"github.com/smugmug/godynamo/types/attributevalue"
 	"github.com/smugmug/godynamo/types/item"
-	"log"
-	"net/http"
 )
 
 // this tests "RetryBatchGet", which does NOT do intelligent splitting and re-assembling

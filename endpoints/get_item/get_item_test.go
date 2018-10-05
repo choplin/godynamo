@@ -8,7 +8,7 @@ import (
 
 func TestNil(t *testing.T) {
 	g := NewGetItem()
-	_,_,err := g.EndpointReqWithConf(nil)
+	_, _, err := g.EndpointReqWithConf(nil)
 	if err == nil {
 		t.Errorf("nil conf should result in error")
 	}
@@ -29,7 +29,7 @@ func TestRequestMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(s[i]) != len(string(json)) {
-			e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json))
+			e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json))
 			t.Errorf(e)
 		}
 	}
@@ -49,7 +49,7 @@ func TestResponseMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(s[i]) != len(string(json1)) {
-			e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json1))
+			e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json1))
 			t.Errorf(e)
 		}
 		c, cerr := g.ToResponseItemJSON()
@@ -62,7 +62,7 @@ func TestResponseMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(j[i]) != len(string(json2)) {
-			e := fmt.Sprintf("\n%s\n%s\nshould be same",s[i],string(json2))
+			e := fmt.Sprintf("\n%s\n%s\nshould be same", s[i], string(json2))
 			t.Errorf(e)
 		}
 	}

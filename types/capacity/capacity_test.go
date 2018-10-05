@@ -25,7 +25,7 @@ func TestCapacityMarshal(t *testing.T) {
 			t.Errorf("cannot marshal\n")
 		}
 		if len(s[i]) != len(string(json)) {
-			e := fmt.Sprintf("%s\n%s\nshould be same",s[i],string(json))
+			e := fmt.Sprintf("%s\n%s\nshould be same", s[i], string(json))
 			t.Errorf(e)
 		}
 	}

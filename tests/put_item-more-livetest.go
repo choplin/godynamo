@@ -2,16 +2,17 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+	"time"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
 	put "github.com/smugmug/godynamo/endpoints/put_item"
 	keepalive "github.com/smugmug/godynamo/keepalive"
 	"github.com/smugmug/godynamo/types/attributevalue"
-	"log"
-	"net/http"
-	"os"
-	"time"
 )
 
 func main() {
@@ -41,27 +42,27 @@ func main() {
 		_ = <-iam_ready_chan
 	}
 	home_conf.ConfLock.RUnlock()
-	
+
 	put1 := put.NewPutItem()
 	put1.TableName = "test-godynamo-livetest"
-	
+
 	k := fmt.Sprintf("hk1000")
 	v := fmt.Sprintf("%v", time.Now().Unix())
 	put1.Item["TheHashKey"] = &attributevalue.AttributeValue{S: k}
 	put1.Item["TheRangeKey"] = &attributevalue.AttributeValue{N: v}
 
-	i := fmt.Sprintf("%v",1)
-	t := fmt.Sprintf("%v",time.Now().Unix())
-	put1.Item["UserID"] = &attributevalue.AttributeValue{N:i}
-	put1.Item["Timestamp"] = &attributevalue.AttributeValue{N:t}
+	i := fmt.Sprintf("%v", 1)
+	t := fmt.Sprintf("%v", time.Now().Unix())
+	put1.Item["UserID"] = &attributevalue.AttributeValue{N: i}
+	put1.Item["Timestamp"] = &attributevalue.AttributeValue{N: t}
 
 	// the Token field is a simple string
-	put1.Item["Token"] = &attributevalue.AttributeValue{S:"a token"}
+	put1.Item["Token"] = &attributevalue.AttributeValue{S: "a token"}
 
 	// the Location must be created as a "map"
 	location := attributevalue.NewAttributeValue()
-	location.InsertM("Latitude",&attributevalue.AttributeValue{N:"120.01"})
-	location.InsertM("Longitude",&attributevalue.AttributeValue{N:"50.99"})
+	location.InsertM("Latitude", &attributevalue.AttributeValue{N: "120.01"})
+	location.InsertM("Longitude", &attributevalue.AttributeValue{N: "50.99"})
 	put1.Item["Location"] = location
 
 	body, code, err := put1.EndpointReqWithConf(home_conf)

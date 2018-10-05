@@ -11,6 +11,8 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"net/http"
+
 	"github.com/smugmug/godynamo/authreq"
 	"github.com/smugmug/godynamo/aws_const"
 	"github.com/smugmug/godynamo/conf"
@@ -20,7 +22,6 @@ import (
 	"github.com/smugmug/godynamo/types/capacity"
 	"github.com/smugmug/godynamo/types/expressionattributenames"
 	"github.com/smugmug/godynamo/types/item"
-	"net/http"
 )
 
 const (

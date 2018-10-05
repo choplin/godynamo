@@ -2,12 +2,13 @@ package main
 
 import (
 	"fmt"
+	"log"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
 	list "github.com/smugmug/godynamo/endpoints/list_tables"
 	keepalive "github.com/smugmug/godynamo/keepalive"
-	"log"
 )
 
 func main() {

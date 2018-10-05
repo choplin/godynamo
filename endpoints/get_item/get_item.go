@@ -9,6 +9,7 @@ package get_item
 import (
 	"encoding/json"
 	"errors"
+
 	"github.com/smugmug/godynamo/authreq"
 	"github.com/smugmug/godynamo/aws_const"
 	"github.com/smugmug/godynamo/conf"

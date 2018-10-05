@@ -7,10 +7,11 @@ import (
 	"crypto/hmac"
 	"crypto/sha256"
 	"encoding/hex"
-	"github.com/smugmug/godynamo/aws_const"
 	"hash"
 	"strings"
 	"time"
+
+	"github.com/smugmug/godynamo/aws_const"
 )
 
 // MakeSignature returns a auth_v4 signature from the `string to sign` variable.

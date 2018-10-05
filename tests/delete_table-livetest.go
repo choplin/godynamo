@@ -2,15 +2,16 @@ package main
 
 import (
 	"fmt"
+	"log"
+	"net/http"
+	"os"
+
 	"github.com/smugmug/godynamo/conf"
 	"github.com/smugmug/godynamo/conf_file"
 	conf_iam "github.com/smugmug/godynamo/conf_iam"
 	delete_table "github.com/smugmug/godynamo/endpoints/delete_table"
 	list "github.com/smugmug/godynamo/endpoints/list_tables"
 	keepalive "github.com/smugmug/godynamo/keepalive"
-	"log"
-	"net/http"
-	"os"
 )
 
 func main() {

@@ -53,7 +53,7 @@ type Scan struct {
 	ProjectionExpression      string                                            `json:",omitempty"`
 	ReturnConsumedCapacity    string                                            `json:",omitempty"`
 	ScanFilter                condition.Conditions
-	Segment                   uint64 `json:",omitempty"`
+	Segment                   uint64
 	Select                    string `json:",omitempty"`
 	TableName                 string
 	TotalSegments             uint64 `json:",omitempty"`

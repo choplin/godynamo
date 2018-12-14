@@ -8,7 +8,6 @@ import (
 	"errors"
 	"fmt"
 	"log"
-	"math"
 	"math/rand"
 	"net/http"
 	"time"
@@ -141,10 +140,11 @@ func retryReq(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]byte, int, 
 			// [0..4**i*100 ms)
 			log.Printf("authreq.retryReq: BEGIN SLEEP %v (code:%v) (REQ:%s) (reqid:%s)",
 				time.Now(), code, string(reqJSON), amz_requestid)
-			r := time.Millisecond *
-				time.Duration(g.Int63n(int64(
-					math.Pow(4, float64(i)))*
-					100))
+			// r := time.Millisecond *
+			// 	time.Duration(g.Int63n(int64(
+			// 		math.Pow(4, float64(i)))*
+			// 		100))
+			r := time.Millisecond * time.Duration(g.Int63n(400))
 			time.Sleep(r)
 			log.Printf("authreq.retryReq END SLEEP %v\n", time.Now())
 			shouldRetry = false
@@ -220,10 +220,11 @@ func retryReqRequestID(reqJSON []byte, amzTarget string, c *conf.AWS_Conf) ([]by
 			// [0..4**i*100 ms)
 			log.Printf("authreq.retryReq: BEGIN SLEEP %v (code:%v) (REQ:%s) (reqid:%s)",
 				time.Now(), code, string(reqJSON), amz_requestid)
-			r := time.Millisecond *
-				time.Duration(g.Int63n(int64(
-					math.Pow(4, float64(i)))*
-					100))
+			// r := time.Millisecond *
+			// 	time.Duration(g.Int63n(int64(
+			// 		math.Pow(4, float64(i)))*
+			// 		100))
+			r := time.Millisecond * time.Duration(g.Int63n(400))
 			time.Sleep(r)
 			log.Printf("authreq.retryReq END SLEEP %v\n", time.Now())
 			shouldRetry = false
